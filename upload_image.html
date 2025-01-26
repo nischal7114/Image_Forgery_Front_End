@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Upload</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div class="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
+    <h2 class="text-2xl font-bold text-gray-800 text-center mb-4">Upload Image</h2>
+    <p class="text-gray-600 text-center mb-6">Please upload images in PDF, DOCX, or DOC format for forgery detection. Ensure the file size is under 25 MB.</p>
+
+    <!-- File Upload Section -->
+    <form id="uploadForm" enctype="multipart/form-data">
+      <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+        <div class="text-center mb-4">
+            <img src="upload.jpg" alt="Drop File" class="mx-auto w-16 h-16">
+          </div>
+        <p class="text-gray-500 mb-4">Drop file or Browse</p>
+        <input
+          type="file"
+          id="fileInput"
+          name="file"
+          accept=".pdf, .docx, .doc"
+          class="block mx-auto text-sm text-gray-600 cursor-pointer mb-4"
+        >
+        <p class="text-sm text-gray-500">Format: pdf, docx, doc & Max file size: 25 MB</p>
+      </div>
+
+      <!-- Buttons -->
+      <div class="mt-6 flex justify-between">
+        <button type="button" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400" id="cancelButton">
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+          id="submitButton"
+        >
+          Done
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Add JavaScript for File Validation
+    document.getElementById('uploadForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const fileInput = document.getElementById('fileInput');
+      const file = fileInput.files[0];
+
+      if (!file) {
+        alert('Please select a file.');
+        return;
+      }
+
+      // Validate File Type
+      const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      if (!allowedTypes.includes(file.type)) {
+        alert('Invalid file type. Only PDF, DOC, and DOCX files are allowed.');
+        return;
+      }
+
+      // Validate File Size
+      const maxSize = 25 * 1024 * 1024; // 25 MB
+      if (file.size > maxSize) {
+        alert('File size exceeds 25 MB. Please upload a smaller file.');
+        return;
+      }
+
+      alert('File uploaded successfully!');
+      // You can handle file upload logic here (e.g., send the file to the server).
+    });
+
+    document.getElementById('cancelButton').addEventListener('click', function () {
+      document.getElementById('fileInput').value = '';
+    });
+  </script>
+</body>
+
+</html>

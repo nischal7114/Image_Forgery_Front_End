@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Forgery Detection</title>
+    <style>
+        /* Base reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            width: 90%;
+            max-width: 1200px;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 16px;
+        }
+
+        .image-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .image-box img:hover {
+            transform: scale(1.05);
+        }
+
+        .image-caption {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #666;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .image-box img {
+                max-width: 90%;
+            }
+
+            .image-caption {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <!-- <script src="https://unpkg.com/@tailwindcss/browser@4"></script> -->
+
+</head>
+
+<body>
+    <div class="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
+        <h2 class="" style="display: flex; justify-content: center;">Image Forgery Detection</h2>
+        <div class="container">
+            <!-- First Image Box -->
+            <div class="image-box">
+                <img src="compare.jpg" alt="Image 1">
+                <p class="image-caption">Original Image</p>
+            </div>
+            <!-- Second Image Box -->
+            <div class="image-box">
+                <img src="compare 2.jpg" alt="Image 2">
+                <p class="image-caption">Tampered Image</p>
+            </div>
+        </div>
+</body>
+
+</html>
